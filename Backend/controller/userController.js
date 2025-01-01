@@ -75,8 +75,7 @@ export const addNewAdmin = catchAsyncErrors(async(req,res,next)=>{
           password, 
           gender,
           dob ,
-          nic , 
-        } =
+          nic} =
           req.body;
 
   if (
@@ -87,9 +86,47 @@ export const addNewAdmin = catchAsyncErrors(async(req,res,next)=>{
     !password ||
     !gender ||
     !dob ||
-    !nic ){
+    !nic 
+  ){
       return next(new ErrorHandler("Please Fill Full Form!", 400));
     }
 
+    const isRegistered =await User.findOne({email});
+    if(isRegistered){
+      return next(new ErrorHandler(`${isRegistered.role} With This Email Already Exists!`));
+
+    }
+      const admin = await User.create({firstName,
+        lastName,
+        email,
+        phone,
+        password, 
+        gender,
+        dob ,
+        nic, 
+        role: "Admin",
+      });
+      res.status(200).json({
+        success: true,
+        message: "New Admin Registered!",
+
+      });
+});
+
+export const getAllDoctors = catchAsyncErrors(async(req,res,next)=>{
+  const doctors = await User.find({role:"Doctor"});
+  res.status(200).json({
+    success: true,
+    doctors,
+  });
+
+});
+
+export const getUserDetails  = catchAsyncErrors(async(req,res,next)=>{
+  const user =req.user;
+  res.status(200).json({
+    success: true,
+    user,
+  });
 
 });
