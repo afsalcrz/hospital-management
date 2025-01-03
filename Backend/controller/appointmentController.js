@@ -37,7 +37,7 @@ export const postAppointment = catchAsyncErrors(async(req,res,next)=>{
         !department ||
         !doctor_firstName ||
         !doctor_lastName ||
-        !hasVisited ||
+        
         !address
 
     ){
