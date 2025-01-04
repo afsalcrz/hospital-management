@@ -8,6 +8,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import { ToastContainer} from "react-toastify";
  import "react-toastify/dist/ReactToastify.css";
+ import Navbar from "./components/Navbar";
 
 
 const App = () => {
@@ -15,6 +16,8 @@ const App = () => {
     <>
 
     <Router>
+      <Navbar/>
+     
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/appointment" element={<Appointment/>}/>
