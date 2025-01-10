@@ -77,8 +77,8 @@ const MessageForm = () => {
             value={message}
              onChange={(e)=> setMessage(e.target.value)}>
              </textarea>
-             <div style={{justifyContent:"center",alignItems:"center"}}>
-              <button type="submit">Send</button>
+            <div style={{ justifyContent: "center", alignItems: "center"}}>
+            <button type="submit">Send</button>
 
              </div>
       </form>
